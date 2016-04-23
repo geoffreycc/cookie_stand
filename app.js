@@ -37,8 +37,16 @@ var pikePlace = {
   min: 17,
   max: 88,
   avg: 5.2,
+  getSales: function (minNum, maxNum) {
+    return Math.floor(Math.random() * (maxNum - minNum)) + minNum;
+  }
 }
 
-function getSales(minNu, maxNu) {
-  return Math.floor(Math.random() * (maxNu - minNu)) + minNu;
-  
+var hours = [10, 11, 12, 1, 2, 3, 4, 5, 6];
+var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat'];
+
+
+
+// function getSales(minNu, maxNu) {
+//   return Math.floor(Math.random() * (maxNu - minNu)) + minNu;
+//
