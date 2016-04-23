@@ -31,7 +31,7 @@
 // }
 //
 // sectionEl.appendChild(ulEl);
-
+var hours = [10, 11, 12, 1, 2, 3, 4, 5, 6];
 
 var pikePlace = {
   min: 17,
@@ -42,11 +42,12 @@ var pikePlace = {
   }
 }
 
-var hours = [10, 11, 12, 1, 2, 3, 4, 5, 6];
-var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat'];
 
 
 
-// function getSales(minNu, maxNu) {
-//   return Math.floor(Math.random() * (maxNu - minNu)) + minNu;
-//
+var hourlySales = [];
+
+for (i = 0; i < hours.length; i++) {
+  hourlySales[i] = pikePlace.getSales(pikePlace.min, pikePlace.max);
+}
+pikePlace.hourly = hourlySales;
