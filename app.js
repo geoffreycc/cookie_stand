@@ -31,8 +31,9 @@
 // }
 //
 // sectionEl.appendChild(ulEl);
-var hours = [10, 11, 12, 1, 2, 3, 4, 5, 6];
 
+
+var hours = [10, 11, 12, 1, 2, 3, 4, 5, 6];
 var pikePlace = {
   min: 17,
   max: 88,
@@ -42,12 +43,21 @@ var pikePlace = {
   }
 }
 
-
-
-
+var dailyTotal = 0;
 var hourlySales = [];
-
 for (i = 0; i < hours.length; i++) {
   hourlySales[i] = pikePlace.getSales(pikePlace.min, pikePlace.max);
+  dailyTotal += hourlySales[i];
 }
+
 pikePlace.hourly = hourlySales;
+pikePlace.daily = dailyTotal;
+
+var elem = document.getElementById('lists');  //grab the main tag in html page
+var ulElem = document.createElement('ul');    // creates an unordered list
+
+// for () {
+//   var liElem = document.createElement( );
+//   liElem.textContent = ;
+//
+// }
