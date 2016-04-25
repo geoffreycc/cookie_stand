@@ -9,28 +9,27 @@ var pikePlace = {
   min: 17,
   max: 88,
   avg: 5.2,
-  dayT: 0,
-  hourlySales: [],
   getSales: function (minNum, maxNum) {
-    return Math.floor(Math.random() * (maxNum - minNum)) + minNum;
-    for (var i = 0; i < hours.length; i++) {
-      this.hourlySales += this.getSales(this.min, this.max);
-      this.dayT += this.hourlySales[i];
-    }
+    return (Math.floor(Math.random() * (maxNum - minNum)) + minNum);
   }
 }
 
-//
-// var dailyTotal = 0;
-// var hourlySales = [];
-// for (i = 0; i < hours.length; i++) {
-//   hourlySales[i] = pikePlace.getSales(pikePlace.min, pikePlace.max);         //Add these into the object
-//   dailyTotal += hourlySales[i];
-// }
-//
-// pikePlace.hourly = hourlySales;
-// pikePlace.daily = dailyTotal;
-//
+var dayTotal = 0;
+var hourlySales = [];
+for (var i = 0; i < hours.length; i++) {
+  hourlySales[i] = pikePlace.getSales(pikePlace.min, pikePlace.max);
+  dayTotal += hourlySales[i];
+}
+pikePlace.hourly = hourlySales;
+pikePlace.dayT = dayTotal;
+
+
+var seaTac = {
+  min: 6,
+  max: 24,
+  avg: 1.2,
+}
+
 // var elem = document.getElementById('lists');  //grab the main tag in html page
 // var ulElem = document.createElement('ul');    // creates an unordered list
 
