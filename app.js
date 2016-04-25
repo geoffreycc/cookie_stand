@@ -1,35 +1,72 @@
-// Location	Min / Cust	Max / Cust	Avg Cookie / Sale
-// Pike Place	17	88	5.2
-// SeaTac Airport	6	24	1.2
-// Southcenter	11	38	1.9
-// Bellevue Square	20	48	3.3
-// Alki	3	24	2.6
+var elm = document.getElementById('lists');
 var hours = [10, 11, 12, 1, 2, 3, 4, 5, 6];
 var pikePlace = {
+  name: 'Pike Place',
   min: 17,
   max: 88,
   avg: 5.2,
-  getSales: function (minNum, maxNum) {
+  getSales: function(minNum, maxNum) {
     return (Math.floor(Math.random() * (maxNum - minNum)) + minNum);
+  },
+  totals: function() {
+    var dayTotal = 0;
+    var hourlySales = [];
+    for (var s = 0; s < hours.length; s++) {
+      hourlySales[s] = this.getSales(this.min, this.max);
+      dayTotal += hourlySales[s];
+      this.hourly = hourlySales;
+      this.dayT = dayTotal;
+    }
+  },
+  render: function() {
+    var ulElm = document.createElement('ul');
+    var keys = Object.keys(this);
+    for (var r = 0; r < 6;  r++) {
+      var liElm = document.createElement('li');
+      liElm.textContent = this[keys[r]];
+      ulElm.appendChild(liElm);
+    }
+    elm.appendChild(ulElm);
   }
 }
 
-var dayTotal = 0;
-var hourlySales = [];
-for (var i = 0; i < hours.length; i++) {
-  hourlySales[i] = pikePlace.getSales(pikePlace.min, pikePlace.max);
-  dayTotal += hourlySales[i];
-}
-pikePlace.hourly = hourlySales;
-pikePlace.dayT = dayTotal;
+// var dayTotal = 0;                                                              //Calculates and creates the hourly totals array and the daily total value
+// var hourlySales = [];
+// for (var i = 0; i < hours.length; i++) {
+//   hourlySales[i] = pikePlace.getSales(pikePlace.min, pikePlace.max);
+//   dayTotal += hourlySales[i];
+// }
+// pikePlace.hourly = hourlySales;
+// pikePlace.dayT = dayTotal;
 
 
 var seaTac = {
+  name: 'SeaTac Airport',
   min: 6,
   max: 24,
   avg: 1.2,
 }
 
+var SouthCenter = {
+  name: 'Southcenter',
+  min: 11,
+  max: 38,
+  avg: 1.9,
+}
+
+var bellSquare = {
+  name: 'Bellevue Square',
+  min: 20,
+  max: 48,
+  avg: 3.3,
+}
+
+var alki = {
+  name: 'Alki',
+  min: 3,
+  max: 24,
+  avg: 2.6,
+}
 // var elem = document.getElementById('lists');  //grab the main tag in html page
 // var ulElem = document.createElement('ul');    // creates an unordered list
 
