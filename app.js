@@ -5,23 +5,23 @@ var pikePlace = {
   min: 17,
   max: 88,
   avg: 5.2,
+  hourly:[],
+  daily: 0,
   getSales: function(minNum, maxNum) {
     return (Math.floor(Math.random() * (maxNum - minNum)) + minNum);
   },
   totals: function() {
-    var dayTotal = 0;
     var hourlySales = [];
     for (var s = 0; s < hours.length; s++) {
-      hourlySales[s] = this.getSales(this.min, this.max);
-      dayTotal += hourlySales[s];
+      hourlySales[s] = Math.floor(this.getSales(this.min, this.max) * this.avg);
+      this.daily += hourlySales[s];
       this.hourly = hourlySales;
-      this.dayT = dayTotal;
     }
   },
   render: function() {
     var ulElm = document.createElement('ul');
-    var keys = Object.keys(this);
-    for (var r = 0; r < 6;  r++) {
+    var keys = Object.keys(this); //Not sure if this line is really wanted.
+    for (var r = 0; r < hours.length;  r++) {
       var liElm = document.createElement('li');
       liElm.textContent = this[keys[r]];
       ulElm.appendChild(liElm);
