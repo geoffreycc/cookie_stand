@@ -1,5 +1,5 @@
 var elm = document.getElementById('lists');
-var hours = [10, 11, 12, 1, 2, 3, 4, 5, 6];
+var hours = ['10am: ', '11am: ','12pm: ','1pm: ','2pm: ','3pm: ','4pm: ','5pm: ','6pm: '];
 var pikePlace = {
   name: 'Pike Place',
   min: 17,
@@ -20,10 +20,10 @@ var pikePlace = {
   },
   render: function() {
     var ulElm = document.createElement('ul');
-    var keys = Object.keys(this); //Not sure if this line is really wanted.
+    // var keys = Object.keys(this); //Not sure if this line is really wanted.
     for (var r = 0; r < hours.length;  r++) {
       var liElm = document.createElement('li');
-      liElm.textContent = this[keys[r]];
+      liElm.textContent = hours[r] + this.hourly[r];
       ulElm.appendChild(liElm);
     }
     elm.appendChild(ulElm);
