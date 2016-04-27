@@ -19,17 +19,23 @@ var pikePlace = {
     }
   },
   render: function() {
+    var hElm = document.createElement('h1');
     var ulElm = document.createElement('ul');
-    // var keys = Object.keys(this); //Not sure if this line is really wanted.
+    var pElm = document.createElement('p');
+    this.totals();
+    hElm.textContent = this.name;
+    pElm.textContent = 'Total: ' + this.daily;
     for (var r = 0; r < hours.length;  r++) {
       var liElm = document.createElement('li');
       liElm.textContent = hours[r] + this.hourly[r];
       ulElm.appendChild(liElm);
     }
+    elm.appendChild(hElm);
     elm.appendChild(ulElm);
+    elm.appendChild(pElm);
   }
 }
-
+pikePlace.render();
 // var dayTotal = 0;                                                              //Calculates and creates the hourly totals array and the daily total value
 // var hourlySales = [];
 // for (var i = 0; i < hours.length; i++) {
