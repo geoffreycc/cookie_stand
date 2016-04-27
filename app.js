@@ -14,25 +14,29 @@ var pikePlace = {
     var hourlySales = [];
     for (var s = 0; s < hours.length; s++) {
       hourlySales[s] = Math.floor(this.getSales(this.min, this.max) * this.avg);
+      // .push necessary here?
       this.daily += hourlySales[s];
+      console.log(this.daily);
       this.hourly = hourlySales;
+      console.log(this.hourly);
     }
   },
   render: function() {
     var hElm = document.createElement('h1');
     var ulElm = document.createElement('ul');
-    var pElm = document.createElement('p');
+    var lisElm = document.createElement('li');  //was lisElm was a p tag
     this.totals();
     hElm.textContent = this.name;
-    pElm.textContent = 'Total: ' + this.daily;
+    lisElm.textContent = 'Total: ' + this.daily;
     for (var r = 0; r < hours.length;  r++) {
       var liElm = document.createElement('li');
       liElm.textContent = hours[r] + this.hourly[r];
       ulElm.appendChild(liElm);
     }
+    ulElm.appendChild(lisElm);
     elm.appendChild(hElm);
     elm.appendChild(ulElm);
-    elm.appendChild(pElm);
+    // elm.appendChild(pElm);
   }
 }
 pikePlace.render();
