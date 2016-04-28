@@ -7,23 +7,29 @@ A different background color for elements such boxes and tables (so make sure th
 Anything else you'd like to add related to style. But remember: simplicity, clarity, and consistency are good things in design.*/
 body{
   font-family: 'Poiret One', cursive;
+  font-style: italic;
   background-color: #CBCED3;
+  color: #2B4462;
 }
 header{
   font-size: 30px;
-  font-weight:bolder;
 }
 h1{
+  text-shadow: 0px 3px 0px #4170A8;
   font-size: 100px;
 }
 h2{
-  font-size: 40px;
+  font-size: 35px;
 }
 nav{
-  font-size: 25px;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 35px;
 }
 p{
-  font-size: 30px;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: bold;
 }
 #storeName{
   background-color: #FFF5D2;
@@ -36,9 +42,18 @@ p{
 }
 #data{
   background-color: white;
+  font-family: serif;
+  color: black;
+  font-weight: normal;
 }
-#footNav{
-  background-color: #A5BEDB;
+#data p{
+  font-size: 20px;
+  font-weight: normal;
 }
-
+#data h2{
+  font-size: 20px;
+  font-style: normal;
+  font-weight: bold;
+}
 /*http://paletton.com/#uid=33C0u0k6mtC8AO45EFY68p74Ule*/
+/*http://paletton.com/#uid=33C0u0klTnXpKzQnSsHjwiThidP*/
