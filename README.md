@@ -5,3 +5,7 @@
 
 References
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+http://html5doctor.com/
+https://css-tricks.com/
+http://paletton.com/
+http://paletton.com/#uid=33C0u0klTnXpKzQnSsHjwiThidP

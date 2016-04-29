@@ -1,6 +1,6 @@
 var elm = document.getElementById('lists');
 var hours = ['10am: ', '11am: ','12pm: ','1pm: ','2pm: ','3pm: ','4pm: ','5pm: ','6pm: '];
-var stores = ['pikePlace', 'seaTac', 'SouthCenter', 'bellSquare', 'alki']
+var stores = ['pikePlace', 'seaTac', 'SouthCenter', 'bellSquare', 'alki'];
 
 var pikePlace = {
   name: 'Pike Place',
@@ -10,12 +10,12 @@ var pikePlace = {
   hourly:[],
   daily: 0,
   getSales: function(minNum, maxNum) {
-    return (Math.floor(Math.random() * (maxNum - minNum)) + minNum);
+    return (Math.random() * (maxNum - minNum)) + minNum;  //Can remove Math.floor here.
   },
-  totals: function() {
+  totals: function(rand, maxN, minN, avgC) { //remove rand
     var hourlySales = [];
     for (var s = 0; s < hours.length; s++) {
-      hourlySales[s] = Math.floor(this.getSales(this.min, this.max) * this.avg);
+      hourlySales[s] = Math.floor(rand(minN, maxN) * avgC);  //change rand to this.getSales
       this.daily += hourlySales[s];
       this.hourly = hourlySales;
     }
@@ -24,10 +24,10 @@ var pikePlace = {
     var hElm = document.createElement('h1');
     var ulElm = document.createElement('ul');
     var lisElm = document.createElement('li');
-    this.totals();
+    this.totals(this.getSales, this.max, this.min, this.avg);                                //added rand
     hElm.textContent = this.name;
     lisElm.textContent = 'Total: ' + this.daily;
-    for (var r = 0; r < hours.length;  r++) {
+    for (var r = 0; r < hours.length; r++) {
       var liElm = document.createElement('li');
       liElm.textContent = hours[r] + this.hourly[r];
       ulElm.appendChild(liElm);
@@ -36,7 +36,7 @@ var pikePlace = {
     elm.appendChild(hElm);
     elm.appendChild(ulElm);
   }
-}
+};
 
 var seaTac = {
   name: 'SeaTac Airport',
@@ -46,7 +46,7 @@ var seaTac = {
   daily: 0,
   hourly: [],
   getSales: function(minNum, maxNum) {
-  return (Math.floor(Math.random() * (maxNum - minNum)) + minNum);
+    return (Math.floor(Math.random() * (maxNum - minNum)) + minNum);
   },
   totals: function() {
     var hourlySales = [];
@@ -72,7 +72,7 @@ var seaTac = {
     elm.appendChild(hElm);
     elm. appendChild(ulElm);
   }
-}
+};
 
 var SouthCenter = {
   name: 'Southcenter',
@@ -82,7 +82,7 @@ var SouthCenter = {
   daily: 0,
   hourly: [],
   getSales: function(minNum, maxNum) {
-    return(Math.floor(Math.random()* (maxNum - minNum)) + minNum);
+    return(Math.floor(Math.random() * (maxNum - minNum)) + minNum);
   },
   totals: function() {
     var hourlySales = [];
@@ -108,7 +108,7 @@ var SouthCenter = {
     elm.appendChild(hElm);
     elm.appendChild(ulElm);
   }
-}
+};
 
 var bellSquare = {
   name: 'Bellevue Square',
@@ -144,7 +144,7 @@ var bellSquare = {
     elm.appendChild(hElm);
     elm.appendChild(ulElm);
   }
-}
+};
 
 var alki = {
   name: 'Alki',
@@ -180,7 +180,7 @@ var alki = {
     elm.appendChild(hElm);
     elm.appendChild(ulElm);
   }
-}
+};
 
 pikePlace.render();
 seaTac.render();
