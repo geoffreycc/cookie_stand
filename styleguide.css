@@ -27,15 +27,11 @@ h3{
   font-size: 50px;
   font-weight: bold;
 }
-nav{
-  font-weight: bold;
-  font-style: italic;
-  font-size: 35px;
-}
 p{
-  font-size: 20px;
+  font-size: 25px;
   font-style: normal;
   font-family: serif;
+  width: 900px;
 }
 pre{
   font-family: sans-serif;
@@ -46,15 +42,13 @@ pre{
   display: inline-block;
 }
 #data h2{
-  /*background-color: white;*/
-  font-size: 35px;
+  font-size: 25px;
   font-family: sans-serif;
   color: black;
   font-weight: normal;
 }
 #dataText p{
   font-size: 20px;
-  font-weight: normal;
   color: black;
   font-family: sans-serif;
 }
@@ -75,5 +69,3 @@ pre{
 #white{
   background-color: white;
 }
-/*http://paletton.com/#uid=33C0u0k6mtC8AO45EFY68p74Ule*/
-/*http://paletton.com/#uid=33C0u0klTnXpKzQnSsHjwiThidP*/

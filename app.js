@@ -10,12 +10,12 @@ var pikePlace = {
   hourly:[],
   daily: 0,
   getSales: function(minNum, maxNum) {
-    return (Math.floor(Math.random() * (maxNum - minNum)) + minNum);  //Can remove Math.floor here.
+    return (Math.random() * (maxNum - minNum)) + minNum;  //Can remove Math.floor here.
   },
-  totals: function() {
+  totals: function(rand, maxN, minN, avgC) { //remove rand
     var hourlySales = [];
     for (var s = 0; s < hours.length; s++) {
-      hourlySales[s] = Math.floor(this.getSales(this.min, this.max) * this.avg);
+      hourlySales[s] = Math.floor(rand(minN, maxN) * avgC);  //change rand to this.getSales
       this.daily += hourlySales[s];
       this.hourly = hourlySales;
     }
@@ -24,7 +24,7 @@ var pikePlace = {
     var hElm = document.createElement('h1');
     var ulElm = document.createElement('ul');
     var lisElm = document.createElement('li');
-    this.totals();
+    this.totals(this.getSales, this.max, this.min, this.avg);                                //added rand
     hElm.textContent = this.name;
     lisElm.textContent = 'Total: ' + this.daily;
     for (var r = 0; r < hours.length; r++) {
