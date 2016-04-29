@@ -2,6 +2,45 @@ var elm = document.getElementById('lists');
 var hours = ['10am: ', '11am: ','12pm: ','1pm: ','2pm: ','3pm: ','4pm: ','5pm: ','6pm: '];
 var stores = ['pikePlace', 'seaTac', 'SouthCenter', 'bellSquare', 'alki'];
 
+function Store(name, min, max){
+  this.name = name;
+  this.min = min;
+  this.max = max;
+}
+Store.prototype.hourly = [];
+Store.prototype.daily = 0;
+Store.prototype.getS = function(minNum, maxNum){
+  return(Math.random() * (maxNum - minNum)) + minNum;
+};
+Store.prototype.totals = function(rand, maxN, minN, avgC, hour) {
+  var hourlySales = [];
+  for(var s = 0; s < hour.length; s++) {
+    hourlySales[s] = Math.floor(rand(maxN - minN) * avgC); //Console says rand is not a function
+    this.daily += hourlySales[s];
+    this.hourly = hourlySales;
+  }
+};
+Store.prototype.render = function() {
+  var hElm = document.createElement('h1');
+  var ulElm = document.createElement('ul');
+  var lisElm = document.createElement('li');
+  this.totals(this.getSales, this.max, this.min, this.avg, hours);                                //added rand
+  hElm.textContent = this.name;
+  lisElm.textContent = 'Total: ' + this.daily;
+  for (var r = 0; r < hours.length; r++) {
+    var liElm = document.createElement('li');
+    liElm.textContent = hours[r] + this.hourly[r];
+    ulElm.appendChild(liElm);
+  }
+  ulElm.appendChild(lisElm);
+  elm.appendChild(hElm);
+  elm.appendChild(ulElm);
+};
+
+
+pikePlace1 = new Store('Pike Place', 17, 88);
+
+
 var pikePlace = {
   name: 'Pike Place',
   min: 17,
@@ -12,9 +51,9 @@ var pikePlace = {
   getSales: function(minNum, maxNum) {
     return (Math.random() * (maxNum - minNum)) + minNum;  //Can remove Math.floor here.
   },
-  totals: function(rand, maxN, minN, avgC) { //remove rand
+  totals: function(rand, maxN, minN, avgC, hour) { //remove rand
     var hourlySales = [];
-    for (var s = 0; s < hours.length; s++) {
+    for (var s = 0; s < hour.length; s++) {
       hourlySales[s] = Math.floor(rand(minN, maxN) * avgC);  //change rand to this.getSales
       this.daily += hourlySales[s];
       this.hourly = hourlySales;
@@ -24,7 +63,7 @@ var pikePlace = {
     var hElm = document.createElement('h1');
     var ulElm = document.createElement('ul');
     var lisElm = document.createElement('li');
-    this.totals(this.getSales, this.max, this.min, this.avg);                                //added rand
+    this.totals(this.getSales, this.max, this.min, this.avg, hours);                                //added rand
     hElm.textContent = this.name;
     lisElm.textContent = 'Total: ' + this.daily;
     for (var r = 0; r < hours.length; r++) {
