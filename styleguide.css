@@ -12,12 +12,19 @@ body{
   color: #2B4462;
   font-size: 30px;
 }
+div{
+  padding-left: 30px;
+}
 h1{
   text-shadow: 0px 3px 0px #4170A8;
   font-size: 100px;
 }
 h2{
-  font-size: 35px;
+  font-size: 75px;
+  font-weight: bold;
+}
+h3{
+  font-size: 50px;
   font-weight: bold;
 }
 nav{
@@ -38,29 +45,35 @@ pre{
   font-size: 15px;
   display: inline-block;
 }
-#storeName{
-  background-color: #FFF5D2;
-}
-#navBar{
-  background-color: #A5BEDB;
-}
-#about{
-  background-color: #FFECE1;
-}
-#data{
-  background-color: white;
+#data h2{
+  /*background-color: white;*/
+  font-size: 35px;
   font-family: sans-serif;
   color: black;
   font-weight: normal;
 }
-#data p{
+#dataText p{
   font-size: 20px;
   font-weight: normal;
+  color: black;
+  font-family: sans-serif;
 }
-#data h2{
-  font-size: 20px;
-  font-style: normal;
-  font-weight: bold;
+#colors div{
+  height: 200px;
+  width: 200px;
+  display: inline-block;
+}
+#yellow{
+  background-color: #FFF5D2;
+}
+#blue{
+  background-color: #A5BEDB;
+}
+#red{
+  background-color: #FFECE1;
+}
+#white{
+  background-color: white;
 }
 /*http://paletton.com/#uid=33C0u0k6mtC8AO45EFY68p74Ule*/
 /*http://paletton.com/#uid=33C0u0klTnXpKzQnSsHjwiThidP*/
