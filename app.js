@@ -2,10 +2,11 @@ var elm = document.getElementById('lists');
 var hours = ['10am: ', '11am: ','12pm: ','1pm: ','2pm: ','3pm: ','4pm: ','5pm: ','6pm: '];
 var stores = ['pikePlace', 'seaTac', 'SouthCenter', 'bellSquare', 'alki'];
 
-function Store(name, min, max){
+function Store(name, min, max, avg){
   this.name = name;
   this.min = min;
   this.max = max;
+  this.avg = avg;
 }
 Store.prototype.hourly = [];
 Store.prototype.daily = 0;
@@ -15,7 +16,7 @@ Store.prototype.getS = function(minNum, maxNum){
 Store.prototype.totals = function(rand, maxN, minN, avgC, hour) {
   var hourlySales = [];
   for(var s = 0; s < hour.length; s++) {
-    hourlySales[s] = Math.floor(rand(maxN, minN) * avgC); //Console says rand is not a function
+    hourlySales[s] = Math.floor(rand(minN, maxN) * avgC);
     this.daily += hourlySales[s];
     this.hourly = hourlySales;
   }
@@ -38,8 +39,8 @@ Store.prototype.render = function() {
 };
 
 
-pikePlace1 = new Store('Pike Place', 17, 88);
-pikePlace1.render();
+var pikePlace = new Store('Pike Place', 17, 88, 5.2);
+pikePlace.render();
 //
 //
 // var pikePlace = {
