@@ -1,6 +1,5 @@
 var infoSec = document.getElementById('storeInfo');
 var hoursOpen = ['10am: ', '11am: ','12pm: ','1pm: ','2pm: ','3pm: ','4pm: ','5pm: ','6pm: '];
-var stores = ['pikePlace', 'seaTac', 'SouthCenter', 'bellSquare', 'alki'];
 
 function Store(storeName, minCust, maxCust, avgCookie){
   this.storeName = storeName;
