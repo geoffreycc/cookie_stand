@@ -1,5 +1,5 @@
 var infoSec = document.getElementById('storeInfo');
-var hoursOpen = ['10 am: ', '11 am: ','12 pm: ','1 pm: ','2 pm: ','3 pm: ','4 pm: ','5 pm: ','6 pm: '];
+var hoursOpen = ['10 am: ', '11 am: ','12 pm: ','1 pm: ','2 pm: ','3 pm: ','4 pm: ','5 pm: ','6pm: '];
 
 function Store(storeName, minCust, maxCust, avgCookie){
   this.storeName = storeName;
@@ -21,20 +21,18 @@ Store.prototype.totals = function(rand, maxN, minN, avgC, hour) {
   }
 };
 Store.prototype.render = function() {
-  var storeNameH1 = document.createElement('tr'); //h1
-  var ulElm = document.createElement('td');  //ul
-  var lisElm = document.createElement('tr');  //li
+  var storeNameTr = document.createElement('tr');
+  var ulElm = document.createElement('td');
+  var lisElm = document.createElement('tr');
   this.totals(this.getSalesNums, this.maxCust, this.minCust, this.avgCookie, hoursOpen);
-  storeNameH1.textContent = this.storeName;
-  ulElm.appendChild(storeNameH1);
+  storeNameTr.textContent = this.storeName;
+  ulElm.appendChild(storeNameTr);
   lisElm.textContent = 'Total: ' + this.dailyTotal;
   for (var r = 0; r < hoursOpen.length; r++) {
-    var liElm = document.createElement('tr');  //li
-    liElm.textContent = hoursOpen[r] + this.hourlySales[r];
+    var liElm = document.createElement('tr');
+    liElm.textContent = this.hourlySales[r];  //hoursOpen[r] +
     ulElm.appendChild(liElm);
   }
-  // ulElm.appendChild(lisElm);
-  // ulElm.appendChild(storeNameH1);  //infoSec
   ulElm.appendChild(lisElm);
   infoSec.appendChild(ulElm);
 };
