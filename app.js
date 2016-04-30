@@ -15,7 +15,7 @@ Store.prototype.getS = function(minNum, maxNum){
 Store.prototype.totals = function(rand, maxN, minN, avgC, hour) {
   var hourlySales = [];
   for(var s = 0; s < hour.length; s++) {
-    hourlySales[s] = Math.floor(rand(maxN - minN) * avgC); //Console says rand is not a function
+    hourlySales[s] = Math.floor(rand(maxN, minN) * avgC); //Console says rand is not a function
     this.daily += hourlySales[s];
     this.hourly = hourlySales;
   }
@@ -24,7 +24,7 @@ Store.prototype.render = function() {
   var hElm = document.createElement('h1');
   var ulElm = document.createElement('ul');
   var lisElm = document.createElement('li');
-  this.totals(this.getSales, this.max, this.min, this.avg, hours);                                //added rand
+  this.totals(this.getS, this.max, this.min, this.avg, hours);
   hElm.textContent = this.name;
   lisElm.textContent = 'Total: ' + this.daily;
   for (var r = 0; r < hours.length; r++) {
@@ -39,190 +39,191 @@ Store.prototype.render = function() {
 
 
 pikePlace1 = new Store('Pike Place', 17, 88);
-
-
-var pikePlace = {
-  name: 'Pike Place',
-  min: 17,
-  max: 88,
-  avg: 5.2,
-  hourly:[],
-  daily: 0,
-  getSales: function(minNum, maxNum) {
-    return (Math.random() * (maxNum - minNum)) + minNum;  //Can remove Math.floor here.
-  },
-  totals: function(rand, maxN, minN, avgC, hour) { //remove rand
-    var hourlySales = [];
-    for (var s = 0; s < hour.length; s++) {
-      hourlySales[s] = Math.floor(rand(minN, maxN) * avgC);  //change rand to this.getSales
-      this.daily += hourlySales[s];
-      this.hourly = hourlySales;
-    }
-  },
-  render: function() {
-    var hElm = document.createElement('h1');
-    var ulElm = document.createElement('ul');
-    var lisElm = document.createElement('li');
-    this.totals(this.getSales, this.max, this.min, this.avg, hours);                                //added rand
-    hElm.textContent = this.name;
-    lisElm.textContent = 'Total: ' + this.daily;
-    for (var r = 0; r < hours.length; r++) {
-      var liElm = document.createElement('li');
-      liElm.textContent = hours[r] + this.hourly[r];
-      ulElm.appendChild(liElm);
-    }
-    ulElm.appendChild(lisElm);
-    elm.appendChild(hElm);
-    elm.appendChild(ulElm);
-  }
-};
-
-var seaTac = {
-  name: 'SeaTac Airport',
-  min: 6,
-  max: 24,
-  avg: 1.2,
-  daily: 0,
-  hourly: [],
-  getSales: function(minNum, maxNum) {
-    return (Math.floor(Math.random() * (maxNum - minNum)) + minNum);
-  },
-  totals: function() {
-    var hourlySales = [];
-    for (var s = 0; s < hours.length; s++) {
-      hourlySales[s] = Math.floor(this.getSales(this.min, this.max) * this.avg);
-      this.daily += hourlySales[s];
-      this.hourly = hourlySales;
-    }
-  },
-  render: function() {
-    var hElm = document.createElement('h1');
-    var ulElm = document.createElement('ul');
-    var lisElm = document.createElement('li');
-    this.totals();
-    hElm.textContent = this.name;
-    lisElm.textContent = 'Total: ' + this.daily;
-    for (var r = 0; r < hours.length; r++) {
-      var liElm = document.createElement('li');
-      liElm.textContent = hours[r] + this.hourly[r];
-      ulElm.appendChild(liElm);
-    }
-    ulElm.appendChild(lisElm);
-    elm.appendChild(hElm);
-    elm. appendChild(ulElm);
-  }
-};
-
-var SouthCenter = {
-  name: 'Southcenter',
-  min: 11,
-  max: 38,
-  avg: 1.9,
-  daily: 0,
-  hourly: [],
-  getSales: function(minNum, maxNum) {
-    return(Math.floor(Math.random() * (maxNum - minNum)) + minNum);
-  },
-  totals: function() {
-    var hourlySales = [];
-    for (var s = 0; s < hours.length; s++) {
-      hourlySales[s] = Math.floor(this.getSales(this.min, this.max) * this.avg);
-      this.daily += hourlySales[s];
-      this.hourly = hourlySales;
-    }
-  },
-  render: function() {
-    var hElm = document.createElement('h1');
-    var ulElm = document.createElement('ul');
-    var lisElm = document.createElement('li');
-    this.totals();
-    hElm.textContent = this.name;
-    lisElm.textContent = 'Total: ' + this.daily;
-    for (var r = 0; r < hours.length; r++) {
-      var liElm = document.createElement('li');
-      liElm.textContent = hours[r] + this.hourly[r];
-      ulElm.appendChild(liElm);
-    }
-    ulElm.appendChild(lisElm);
-    elm.appendChild(hElm);
-    elm.appendChild(ulElm);
-  }
-};
-
-var bellSquare = {
-  name: 'Bellevue Square',
-  min: 20,
-  max: 48,
-  avg: 3.3,
-  daily: 0,
-  hourly: [],
-  getSales: function(minNum, maxNum) {
-    return(Math.floor(Math.random() * (maxNum - minNum)) + minNum);
-  },
-  totals: function() {
-    var hourlySales = [];
-    for (var s = 0; s < hours.length; s++) {
-      hourlySales[s] = Math.floor(this.getSales(this.min, this.max) * this.avg);
-      this.daily += hourlySales[s];
-      this.hourly = hourlySales;
-    }
-  },
-  render: function() {
-    var hElm = document.createElement('h1');
-    var ulElm = document.createElement('ul');
-    var lisElm = document.createElement('li');
-    this.totals();
-    hElm.textContent = this.name;
-    lisElm.textContent = 'Total: ' + this.daily;
-    for (var r = 0; r < hours.length; r++) {
-      var liElm = document.createElement('li');
-      liElm.textContent = hours[r] + this.hourly[r];
-      ulElm.appendChild(liElm);
-    }
-    ulElm.appendChild(lisElm);
-    elm.appendChild(hElm);
-    elm.appendChild(ulElm);
-  }
-};
-
-var alki = {
-  name: 'Alki',
-  min: 3,
-  max: 24,
-  avg: 2.6,
-  daily: 0,
-  hourly: [],
-  getSales: function(minNum, maxNum) {
-    return(Math.floor(Math.random() * (maxNum - minNum)) + minNum);
-  },
-  totals: function() {
-    var hourlySales = [];
-    for (var s = 0; s < hours.length; s++) {
-      hourlySales[s] = Math.floor(this.getSales(this.min, this.max) * this.avg);
-      this.daily += hourlySales[s];
-      this.hourly = hourlySales;
-    }
-  },
-  render: function() {
-    var hElm = document.createElement('h1');
-    var ulElm = document.createElement('ul');
-    var lisElm = document.createElement('li');
-    this.totals();
-    hElm.textContent = this.name;
-    lisElm.textContent = 'Total: ' + this.daily;
-    for (var r = 0; r < hours.length; r++) {
-      var liElm = document.createElement('li');
-      liElm.textContent = hours[r] + this.hourly[r];
-      ulElm.appendChild(liElm);
-    }
-    ulElm.appendChild(lisElm);
-    elm.appendChild(hElm);
-    elm.appendChild(ulElm);
-  }
-};
-
-pikePlace.render();
-seaTac.render();
-SouthCenter.render();
-bellSquare.render();
-alki.render();
+pikePlace1.render();
+//
+//
+// var pikePlace = {
+//   name: 'Pike Place',
+//   min: 17,
+//   max: 88,
+//   avg: 5.2,
+//   hourly:[],
+//   daily: 0,
+//   getSales: function(minNum, maxNum) {
+//     return (Math.random() * (maxNum - minNum)) + minNum;
+//   },
+//   totals: function(rand, maxN, minN, avgC, hour) {
+//     var hourlySales = [];
+//     for (var s = 0; s < hour.length; s++) {
+//       hourlySales[s] = Math.floor(rand(minN, maxN) * avgC);
+//       this.daily += hourlySales[s];
+//       this.hourly = hourlySales;
+//     }
+//   },
+//   render: function() {
+//     var hElm = document.createElement('h1');
+//     var ulElm = document.createElement('ul');
+//     var lisElm = document.createElement('li');
+//     this.totals(this.getSales, this.max, this.min, this.avg, hours);
+//     hElm.textContent = this.name;
+//     lisElm.textContent = 'Total: ' + this.daily;
+//     for (var r = 0; r < hours.length; r++) {
+//       var liElm = document.createElement('li');
+//       liElm.textContent = hours[r] + this.hourly[r];
+//       ulElm.appendChild(liElm);
+//     }
+//     ulElm.appendChild(lisElm);
+//     elm.appendChild(hElm);
+//     elm.appendChild(ulElm);
+//   }
+// };
+//
+// var seaTac = {
+//   name: 'SeaTac Airport',
+//   min: 6,
+//   max: 24,
+//   avg: 1.2,
+//   daily: 0,
+//   hourly: [],
+//   getSales: function(minNum, maxNum) {
+//     return (Math.floor(Math.random() * (maxNum - minNum)) + minNum);
+//   },
+//   totals: function() {
+//     var hourlySales = [];
+//     for (var s = 0; s < hours.length; s++) {
+//       hourlySales[s] = Math.floor(this.getSales(this.min, this.max) * this.avg);
+//       this.daily += hourlySales[s];
+//       this.hourly = hourlySales;
+//     }
+//   },
+//   render: function() {
+//     var hElm = document.createElement('h1');
+//     var ulElm = document.createElement('ul');
+//     var lisElm = document.createElement('li');
+//     this.totals();
+//     hElm.textContent = this.name;
+//     lisElm.textContent = 'Total: ' + this.daily;
+//     for (var r = 0; r < hours.length; r++) {
+//       var liElm = document.createElement('li');
+//       liElm.textContent = hours[r] + this.hourly[r];
+//       ulElm.appendChild(liElm);
+//     }
+//     ulElm.appendChild(lisElm);
+//     elm.appendChild(hElm);
+//     elm. appendChild(ulElm);
+//   }
+// };
+//
+// var SouthCenter = {
+//   name: 'Southcenter',
+//   min: 11,
+//   max: 38,
+//   avg: 1.9,
+//   daily: 0,
+//   hourly: [],
+//   getSales: function(minNum, maxNum) {
+//     return(Math.floor(Math.random() * (maxNum - minNum)) + minNum);
+//   },
+//   totals: function() {
+//     var hourlySales = [];
+//     for (var s = 0; s < hours.length; s++) {
+//       hourlySales[s] = Math.floor(this.getSales(this.min, this.max) * this.avg);
+//       this.daily += hourlySales[s];
+//       this.hourly = hourlySales;
+//     }
+//   },
+//   render: function() {
+//     var hElm = document.createElement('h1');
+//     var ulElm = document.createElement('ul');
+//     var lisElm = document.createElement('li');
+//     this.totals();
+//     hElm.textContent = this.name;
+//     lisElm.textContent = 'Total: ' + this.daily;
+//     for (var r = 0; r < hours.length; r++) {
+//       var liElm = document.createElement('li');
+//       liElm.textContent = hours[r] + this.hourly[r];
+//       ulElm.appendChild(liElm);
+//     }
+//     ulElm.appendChild(lisElm);
+//     elm.appendChild(hElm);
+//     elm.appendChild(ulElm);
+//   }
+// };
+//
+// var bellSquare = {
+//   name: 'Bellevue Square',
+//   min: 20,
+//   max: 48,
+//   avg: 3.3,
+//   daily: 0,
+//   hourly: [],
+//   getSales: function(minNum, maxNum) {
+//     return(Math.floor(Math.random() * (maxNum - minNum)) + minNum);
+//   },
+//   totals: function() {
+//     var hourlySales = [];
+//     for (var s = 0; s < hours.length; s++) {
+//       hourlySales[s] = Math.floor(this.getSales(this.min, this.max) * this.avg);
+//       this.daily += hourlySales[s];
+//       this.hourly = hourlySales;
+//     }
+//   },
+//   render: function() {
+//     var hElm = document.createElement('h1');
+//     var ulElm = document.createElement('ul');
+//     var lisElm = document.createElement('li');
+//     this.totals();
+//     hElm.textContent = this.name;
+//     lisElm.textContent = 'Total: ' + this.daily;
+//     for (var r = 0; r < hours.length; r++) {
+//       var liElm = document.createElement('li');
+//       liElm.textContent = hours[r] + this.hourly[r];
+//       ulElm.appendChild(liElm);
+//     }
+//     ulElm.appendChild(lisElm);
+//     elm.appendChild(hElm);
+//     elm.appendChild(ulElm);
+//   }
+// };
+//
+// var alki = {
+//   name: 'Alki',
+//   min: 3,
+//   max: 24,
+//   avg: 2.6,
+//   daily: 0,
+//   hourly: [],
+//   getSales: function(minNum, maxNum) {
+//     return(Math.floor(Math.random() * (maxNum - minNum)) + minNum);
+//   },
+//   totals: function() {
+//     var hourlySales = [];
+//     for (var s = 0; s < hours.length; s++) {
+//       hourlySales[s] = Math.floor(this.getSales(this.min, this.max) * this.avg);
+//       this.daily += hourlySales[s];
+//       this.hourly = hourlySales;
+//     }
+//   },
+//   render: function() {
+//     var hElm = document.createElement('h1');
+//     var ulElm = document.createElement('ul');
+//     var lisElm = document.createElement('li');
+//     this.totals();
+//     hElm.textContent = this.name;
+//     lisElm.textContent = 'Total: ' + this.daily;
+//     for (var r = 0; r < hours.length; r++) {
+//       var liElm = document.createElement('li');
+//       liElm.textContent = hours[r] + this.hourly[r];
+//       ulElm.appendChild(liElm);
+//     }
+//     ulElm.appendChild(lisElm);
+//     elm.appendChild(hElm);
+//     elm.appendChild(ulElm);
+//   }
+// };
+//
+// pikePlace.render();
+// seaTac.render();
+// SouthCenter.render();
+// bellSquare.render();
+// alki.render();
