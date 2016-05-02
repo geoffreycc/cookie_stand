@@ -1,189 +1,50 @@
-var elm = document.getElementById('lists');
-var hours = ['10am: ', '11am: ','12pm: ','1pm: ','2pm: ','3pm: ','4pm: ','5pm: ','6pm: '];
-var stores = ['pikePlace', 'seaTac', 'SouthCenter', 'bellSquare', 'alki'];
+var infoSec = document.getElementById('storeInfo');
+var hoursOpen = ['10 am: ', '11 am: ','12 pm: ','1 pm: ','2 pm: ','3 pm: ','4 pm: ','5 pm: ','6pm: '];
 
-var pikePlace = {
-  name: 'Pike Place',
-  min: 17,
-  max: 88,
-  avg: 5.2,
-  hourly:[],
-  daily: 0,
-  getSales: function(minNum, maxNum) {
-    return (Math.random() * (maxNum - minNum)) + minNum;  //Can remove Math.floor here.
-  },
-  totals: function(rand, maxN, minN, avgC) { //remove rand
-    var hourlySales = [];
-    for (var s = 0; s < hours.length; s++) {
-      hourlySales[s] = Math.floor(rand(minN, maxN) * avgC);  //change rand to this.getSales
-      this.daily += hourlySales[s];
-      this.hourly = hourlySales;
-    }
-  },
-  render: function() {
-    var hElm = document.createElement('h1');
-    var ulElm = document.createElement('ul');
-    var lisElm = document.createElement('li');
-    this.totals(this.getSales, this.max, this.min, this.avg);                                //added rand
-    hElm.textContent = this.name;
-    lisElm.textContent = 'Total: ' + this.daily;
-    for (var r = 0; r < hours.length; r++) {
-      var liElm = document.createElement('li');
-      liElm.textContent = hours[r] + this.hourly[r];
-      ulElm.appendChild(liElm);
-    }
-    ulElm.appendChild(lisElm);
-    elm.appendChild(hElm);
-    elm.appendChild(ulElm);
+function Store(storeName, minCust, maxCust, avgCookie){
+  this.storeName = storeName;
+  this.minCust = minCust;
+  this.maxCust = maxCust;
+  this.avgCookie = avgCookie;
+}
+Store.prototype.hourlySales = [];
+Store.prototype.dailyTotal = 0;
+Store.prototype.getSalesNums = function(minNum, maxNum){
+  return(Math.random() * (maxNum - minNum)) + minNum;
+};
+Store.prototype.totals = function(rand, maxN, minN, avgC, hour) {
+  var hourlySale = [];
+  for(var s = 0; s < hour.length; s++) {
+    hourlySale[s] = Math.floor(rand(minN, maxN) * avgC);
+    this.dailyTotal += hourlySale[s];
+    this.hourlySales = hourlySale;
   }
 };
-
-var seaTac = {
-  name: 'SeaTac Airport',
-  min: 6,
-  max: 24,
-  avg: 1.2,
-  daily: 0,
-  hourly: [],
-  getSales: function(minNum, maxNum) {
-    return (Math.floor(Math.random() * (maxNum - minNum)) + minNum);
-  },
-  totals: function() {
-    var hourlySales = [];
-    for (var s = 0; s < hours.length; s++) {
-      hourlySales[s] = Math.floor(this.getSales(this.min, this.max) * this.avg);
-      this.daily += hourlySales[s];
-      this.hourly = hourlySales;
-    }
-  },
-  render: function() {
-    var hElm = document.createElement('h1');
-    var ulElm = document.createElement('ul');
-    var lisElm = document.createElement('li');
-    this.totals();
-    hElm.textContent = this.name;
-    lisElm.textContent = 'Total: ' + this.daily;
-    for (var r = 0; r < hours.length; r++) {
-      var liElm = document.createElement('li');
-      liElm.textContent = hours[r] + this.hourly[r];
-      ulElm.appendChild(liElm);
-    }
-    ulElm.appendChild(lisElm);
-    elm.appendChild(hElm);
-    elm. appendChild(ulElm);
+Store.prototype.render = function() {
+  var storeNameTr = document.createElement('tr');
+  var ulElm = document.createElement('td');
+  var lisElm = document.createElement('tr');
+  this.totals(this.getSalesNums, this.maxCust, this.minCust, this.avgCookie, hoursOpen);
+  storeNameTr.textContent = this.storeName;
+  ulElm.appendChild(storeNameTr);
+  lisElm.textContent = 'Total: ' + this.dailyTotal;
+  for (var r = 0; r < hoursOpen.length; r++) {
+    var liElm = document.createElement('tr');
+    liElm.textContent = this.hourlySales[r];  //hoursOpen[r] +
+    ulElm.appendChild(liElm);
   }
+  ulElm.appendChild(lisElm);
+  infoSec.appendChild(ulElm);
 };
 
-var SouthCenter = {
-  name: 'Southcenter',
-  min: 11,
-  max: 38,
-  avg: 1.9,
-  daily: 0,
-  hourly: [],
-  getSales: function(minNum, maxNum) {
-    return(Math.floor(Math.random() * (maxNum - minNum)) + minNum);
-  },
-  totals: function() {
-    var hourlySales = [];
-    for (var s = 0; s < hours.length; s++) {
-      hourlySales[s] = Math.floor(this.getSales(this.min, this.max) * this.avg);
-      this.daily += hourlySales[s];
-      this.hourly = hourlySales;
-    }
-  },
-  render: function() {
-    var hElm = document.createElement('h1');
-    var ulElm = document.createElement('ul');
-    var lisElm = document.createElement('li');
-    this.totals();
-    hElm.textContent = this.name;
-    lisElm.textContent = 'Total: ' + this.daily;
-    for (var r = 0; r < hours.length; r++) {
-      var liElm = document.createElement('li');
-      liElm.textContent = hours[r] + this.hourly[r];
-      ulElm.appendChild(liElm);
-    }
-    ulElm.appendChild(lisElm);
-    elm.appendChild(hElm);
-    elm.appendChild(ulElm);
-  }
-};
-
-var bellSquare = {
-  name: 'Bellevue Square',
-  min: 20,
-  max: 48,
-  avg: 3.3,
-  daily: 0,
-  hourly: [],
-  getSales: function(minNum, maxNum) {
-    return(Math.floor(Math.random() * (maxNum - minNum)) + minNum);
-  },
-  totals: function() {
-    var hourlySales = [];
-    for (var s = 0; s < hours.length; s++) {
-      hourlySales[s] = Math.floor(this.getSales(this.min, this.max) * this.avg);
-      this.daily += hourlySales[s];
-      this.hourly = hourlySales;
-    }
-  },
-  render: function() {
-    var hElm = document.createElement('h1');
-    var ulElm = document.createElement('ul');
-    var lisElm = document.createElement('li');
-    this.totals();
-    hElm.textContent = this.name;
-    lisElm.textContent = 'Total: ' + this.daily;
-    for (var r = 0; r < hours.length; r++) {
-      var liElm = document.createElement('li');
-      liElm.textContent = hours[r] + this.hourly[r];
-      ulElm.appendChild(liElm);
-    }
-    ulElm.appendChild(lisElm);
-    elm.appendChild(hElm);
-    elm.appendChild(ulElm);
-  }
-};
-
-var alki = {
-  name: 'Alki',
-  min: 3,
-  max: 24,
-  avg: 2.6,
-  daily: 0,
-  hourly: [],
-  getSales: function(minNum, maxNum) {
-    return(Math.floor(Math.random() * (maxNum - minNum)) + minNum);
-  },
-  totals: function() {
-    var hourlySales = [];
-    for (var s = 0; s < hours.length; s++) {
-      hourlySales[s] = Math.floor(this.getSales(this.min, this.max) * this.avg);
-      this.daily += hourlySales[s];
-      this.hourly = hourlySales;
-    }
-  },
-  render: function() {
-    var hElm = document.createElement('h1');
-    var ulElm = document.createElement('ul');
-    var lisElm = document.createElement('li');
-    this.totals();
-    hElm.textContent = this.name;
-    lisElm.textContent = 'Total: ' + this.daily;
-    for (var r = 0; r < hours.length; r++) {
-      var liElm = document.createElement('li');
-      liElm.textContent = hours[r] + this.hourly[r];
-      ulElm.appendChild(liElm);
-    }
-    ulElm.appendChild(lisElm);
-    elm.appendChild(hElm);
-    elm.appendChild(ulElm);
-  }
-};
+var pikePlace = new Store('Pike Place', 17, 88, 5.2);
+var seaTac = new Store('SeaTac Airport', 6, 24, 1.2);
+var southCenter = new Store('Southcenter', 11, 38, 1.9);
+var bellSquare = new Store('Bellevue Square', 20, 48, 3.3);
+var alki = new Store('Alki', 3, 24, 2.6);
 
 pikePlace.render();
 seaTac.render();
-SouthCenter.render();
+southCenter.render();
 bellSquare.render();
 alki.render();
