@@ -1,5 +1,5 @@
 var infoSec = document.getElementById('storeInfo');
-var hoursOpen = ['10 am: ', '11 am: ','12 pm: ','1 pm: ','2 pm: ','3 pm: ','4 pm: ','5 pm: ','6pm: '];
+var hoursOpen = ['10am', '11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm'];
 var storeArr = [];
 
 function Store(storeName, minCust, maxCust, avgCookie){
@@ -24,7 +24,7 @@ Store.prototype.totals = function(rand, maxN, minN, avgC, hour) {
 Store.prototype.render = function() {
   // var storeNameTr = document.createElement('tr'); //tr
   // var ulElm = document.createElement('td'); //td
-  var lisElm = document.createElement('th'); //tr
+  // var lisElm = document.createElement('th'); //tr
   this.totals(this.getSalesNums, this.maxCust, this.minCust, this.avgCookie, hoursOpen);
   // storeNameTr.textContent = this.storeName;
   // infoSec.appendChild(storeNameTr); //ulElm
@@ -39,6 +39,7 @@ Store.prototype.render = function() {
   // ulElm.appendChild(lisElm);
   // infoSec.appendChild(ulElm);
 };
+hoursTop();
 
 // function salesData(data){
 //   for (var d = 0; d < hoursOpen.length; r++) {
@@ -47,15 +48,27 @@ Store.prototype.render = function() {
 //     storeNameTr.appendChild(tdElm);
 //   }
 // }
+function hoursTop() {
+  var topR = document.getElementById('hoursRow');
+  var totalTopTh = document.createElement('th');
+  for (var h = 0; h < hoursOpen.length; h++) {
+    var hourTh = document.createElement('th');
+    hourTh.textContent = hoursOpen[h];
+    topR.appendChild(hourTh);
+  }
+  totalTopTh.textContent = 'Total';
+  topR.appendChild(totalTopTh);
+}
 
-function storeTitle(nameS, data, dayTotals){
+function storeTitle(nameS, data, dayTotals) {
   var storeNameTr = document.createElement('tr');
   var totalTh = document.createElement('th');
+  var tableB = document.getElementById('storeInfo');
   storeNameTr.textContent = nameS;
-  infoSec.appendChild(storeNameTr);
-  var tdElm = document.createElement('td');
+  tableB.appendChild(storeNameTr);
   for (var d = 0; d < hoursOpen.length; d++) {
-    tdElm.textContent = data;
+    var tdElm = document.createElement('td');
+    tdElm.textContent = data[d];
     storeNameTr.appendChild(tdElm);
   }
   totalTh.textContent = dayTotals;
