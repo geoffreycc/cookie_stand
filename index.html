@@ -8,18 +8,22 @@
   <body>
     <main>
       <section id="storeInfo">
+        <table>
+        </table>
       </section>
-      <!-- <fieldset>
-        <legend>Add a New Store</legend>
-        <label>Store Name:<br />
-        <input type="text" name="storeN"</label><br />
-        <lable>Minimum number of customers per hour:<br />
-        <input type="text" name="minC"</lable><br />
-        <label>Maximum number of customers per hour:<br />
-        <input type="text" name="maxC"</lable><br />
-        <lable>Average number of cookies sold per customer:<br />
-        <input type="text" name="avgcook"</lable><br />
-      </fieldset> -->
+      <form>
+        <fieldset>
+          <legend>Add a New Store</legend>
+          <label for="storeN">Store Name:</label>
+          <input type="text" id="storeN">
+          <lable for="minC">Minimum number of customers per hour:</lable>
+          <input type="text" id="minC">
+          <label for="maxC">Maximum number of customers per hour:</lable>
+          <input type="text" id="maxC">
+          <lable for="avgCook">Average number of cookies sold per customer:</lable>
+          <input type="text" id="avgCook">
+        </fieldset>
+      </form>
     </main>
     <script src="app.js" type="text/javascript"></script>
   </body>
