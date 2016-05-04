@@ -23,13 +23,13 @@ Store.prototype.totals = function(rand, maxN, minN, avgC, hour) {
 Store.prototype.render = function() {
   this.totals(this.getSalesNums, this.maxCust, this.minCust, this.avgCookie, hoursOpen);
   storeArr.push(this);
-  storeTitle(this.storeName, this.hourlySales, this.dailyTotal);
+  storeTitle(this.storeName, this.hourlySales, this.dailyTotal, hoursOpen);
 };
 
-function hoursTop() {
+function hoursTop(hours) {
   var topR = document.getElementById('hoursRow');
   var totalTopTh = document.createElement('th');
-  for (var h = 0; h < hoursOpen.length; h++) {
+  for (var h = 0; h < hours.length; h++) {
     var hourTh = document.createElement('th');
     hourTh.textContent = hoursOpen[h];
     topR.appendChild(hourTh);
@@ -38,13 +38,13 @@ function hoursTop() {
   topR.appendChild(totalTopTh);
 }
 
-function storeTitle(nameS, data, dayTotals) {
+function storeTitle(nameS, data, dayTotals, hours) {
   var storeNameTr = document.createElement('tr');
   var totalTh = document.createElement('th');
   var tableB = document.getElementById('storeInfo');
   storeNameTr.textContent = nameS;
   tableB.appendChild(storeNameTr);
-  for (var d = 0; d < hoursOpen.length; d++) {
+  for (var d = 0; d < hours.length; d++) {
     var tdElm = document.createElement('td');
     tdElm.textContent = data[d];
     storeNameTr.appendChild(tdElm);
@@ -59,7 +59,7 @@ var southCenter = new Store('Southcenter', 11, 38, 1.9);
 var bellSquare = new Store('Bellevue Square', 20, 48, 3.3);
 var alki = new Store('Alki', 3, 24, 2.6);
 
-hoursTop();
+hoursTop(hoursOpen);
 pikePlace.render();
 seaTac.render();
 southCenter.render();
