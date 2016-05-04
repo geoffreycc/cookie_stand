@@ -65,3 +65,15 @@ seaTac.render();
 southCenter.render();
 bellSquare.render();
 alki.render();
+
+var formEl = document.getElementById('newStoreInfo');
+
+formEl.addEventListener('submit', function(event) {
+  event.preventDefault();
+  var nameStore = event.target.storeN.value;
+  var miniC = event.target.minC.value;
+  var maxiC = event.target.maxC.value;
+  var avgCookie = event.target.avgCook.value;
+  var storeNew = new Store(nameStore, miniC, maxiC, avgCookie);
+  storeNew.render();
+});
