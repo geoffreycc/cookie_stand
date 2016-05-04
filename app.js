@@ -1,4 +1,3 @@
-var infoSec = document.getElementById('storeInfo');
 var hoursOpen = ['10am', '11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm'];
 var storeArr = [];
 
@@ -22,32 +21,11 @@ Store.prototype.totals = function(rand, maxN, minN, avgC, hour) {
   }
 };
 Store.prototype.render = function() {
-  // var storeNameTr = document.createElement('tr'); //tr
-  // var ulElm = document.createElement('td'); //td
-  // var lisElm = document.createElement('th'); //tr
   this.totals(this.getSalesNums, this.maxCust, this.minCust, this.avgCookie, hoursOpen);
-  // storeNameTr.textContent = this.storeName;
-  // infoSec.appendChild(storeNameTr); //ulElm
   storeArr.push(this);
   storeTitle(this.storeName, this.hourlySales, this.dailyTotal);
-  // lisElm.textContent = 'Total: ' + this.dailyTotal;
-  // for (var r = 0; r < hoursOpen.length; r++) {
-  //   var liElm = document.createElement('td'); //tr
-  //   liElm.textContent = this.hourlySales[r];  //hoursOpen[r] +
-  //   ulElm.appendChild(liElm);
-  // }
-  // ulElm.appendChild(lisElm);
-  // infoSec.appendChild(ulElm);
 };
-hoursTop();
 
-// function salesData(data){
-//   for (var d = 0; d < hoursOpen.length; r++) {
-//     var tdElm = document.createElement('td');
-//     tdElm.textContent = data;
-//     storeNameTr.appendChild(tdElm);
-//   }
-// }
 function hoursTop() {
   var topR = document.getElementById('hoursRow');
   var totalTopTh = document.createElement('th');
@@ -81,6 +59,7 @@ var southCenter = new Store('Southcenter', 11, 38, 1.9);
 var bellSquare = new Store('Bellevue Square', 20, 48, 3.3);
 var alki = new Store('Alki', 3, 24, 2.6);
 
+hoursTop();
 pikePlace.render();
 seaTac.render();
 southCenter.render();
