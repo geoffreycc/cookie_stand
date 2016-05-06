@@ -13,3 +13,4 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase
 https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null
+https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/children

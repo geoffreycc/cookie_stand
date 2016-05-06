@@ -42,13 +42,14 @@ function storeTitle(nameS, data, dayTotals, hours) {
   var storeNameTr = document.createElement('tr');
   var totalTh = document.createElement('th');
   var tableB = document.getElementById('storeInfo');
-  var space = / /g;
   storeNameTr.textContent = nameS;
-  var noSpaceName = nameS.replace(space, '');
-  storeNameTr.id = noSpaceName.toLowerCase();
   tableB.appendChild(storeNameTr);
   for (var d = 0; d < hours.length; d++) {
+    var space = / /g;
     var tdElm = document.createElement('td');
+    var noSpace = nameS.replace(space, '');
+    var noSpaceName = noSpace.toLowerCase();
+    storeNameTr.id = noSpaceName;
     tdElm.textContent = data[d];
     storeNameTr.appendChild(tdElm);
   }
@@ -89,7 +90,8 @@ formEl.addEventListener('submit', function(event) {
   var maxiC = parseInt(event.target.maxC.value);
   var avgCook = parseFloat(event.target.avgCook.value);
   var space = / /g;
-  var noSpaceName = nameStore.replace(space, '');
+  var noSpace = nameStore.replace(space, '');
+  var noSpaceName = noSpace.toLowerCase();
   var storeNew = new Store(nameStore, miniC, maxiC, avgCook);
   if (document.getElementById(noSpaceName) === null) {
     console.log('Okay!');
@@ -99,10 +101,25 @@ formEl.addEventListener('submit', function(event) {
     var updateStore = new Store(nameStore, miniC, maxiC, avgCook);
     console.log('Already exists!');
     update(updateStore);
+    console.log(updateStore);
   }
 });
 
+
 function update(obj) {
+  var space = / /g;
+  var nameStore = event.target.storeN.value;
+  var noSpace = nameStore.replace(space, '');
+  var noSpaceName = noSpace.toLowerCase();
+  var parentRow = document.getElementById(noSpaceName);
+  console.log(parentRow);
+  var parentRowChildren = parentRow.children;
+  console.log(parentRowChildren);
+  console.log(typeof parentRowChildren);
   obj.totals(obj.getSalesNums, obj.maxCust, obj.minCust, obj.avgCookie, hoursOpen);
-  obj.render();
+  for (var h = 0; h < hoursOpen.length; h++) {
+    parentRowChildren[h].textContent = obj.hourlySales[h];
+  }
+  parentRowChildren[9].textContent = obj.dailyTotal;
+  // obj.render();
 }
