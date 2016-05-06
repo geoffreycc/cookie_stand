@@ -70,19 +70,32 @@ bellSquare.render();
 alki.render();
 
 var formEl = document.getElementById('newStoreInfo');
-
+//
+// formEl.addEventListener('submit', function(event) {
+//   event.preventDefault();
+//   var nameStore = event.target.storeN.value;
+//   var miniC = parseInt(event.target.minC.value);
+//   var maxiC = parseInt(event.target.maxC.value);
+//   var avgCook = parseFloat(event.target.avgCook.value);
+//   var storeNew = new Store(nameStore, miniC, maxiC, avgCook);
+//   storeNew.render();
+//   // }
+// });
+//
 formEl.addEventListener('submit', function(event) {
   event.preventDefault();
   var nameStore = event.target.storeN.value;
   var miniC = parseInt(event.target.minC.value);
   var maxiC = parseInt(event.target.maxC.value);
   var avgCook = parseFloat(event.target.avgCook.value);
-  // if (nameStore = storeNameTr.id) {
-  //   miniC = this.minCust;
-  //   maxiC = this.maxCust;
-  //   avgCook = this.avgCookie;
-  // } else {
+  var space = / /g;
+  var noSpaceName = nameStore.replace(space, '');
+  if (document.getElementById(noSpaceName) === null) {
+    console.log('Okay!');
     var storeNew = new Store(nameStore, miniC, maxiC, avgCook);
     storeNew.render();
-  // }
+  } else {
+    console.log('Already exists!');
+  }
+
 });
