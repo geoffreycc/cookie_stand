@@ -90,12 +90,19 @@ formEl.addEventListener('submit', function(event) {
   var avgCook = parseFloat(event.target.avgCook.value);
   var space = / /g;
   var noSpaceName = nameStore.replace(space, '');
+  var storeNew = new Store(nameStore, miniC, maxiC, avgCook);
   if (document.getElementById(noSpaceName) === null) {
     console.log('Okay!');
-    var storeNew = new Store(nameStore, miniC, maxiC, avgCook);
+    // var storeNew = new Store(nameStore, miniC, maxiC, avgCook);
     storeNew.render();
   } else {
+    var updateStore = new Store(nameStore, miniC, maxiC, avgCook);
     console.log('Already exists!');
+    update(updateStore);
   }
-
 });
+
+function update(obj) {
+  obj.totals(obj.getSalesNums, obj.maxCust, obj.minCust, obj.avgCookie, hoursOpen);
+  obj.render();
+}
