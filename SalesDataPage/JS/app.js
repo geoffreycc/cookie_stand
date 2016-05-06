@@ -42,7 +42,10 @@ function storeTitle(nameS, data, dayTotals, hours) {
   var storeNameTr = document.createElement('tr');
   var totalTh = document.createElement('th');
   var tableB = document.getElementById('storeInfo');
+  var space = / /g;
   storeNameTr.textContent = nameS;
+  var noSpaceName = nameS.replace(space, '');
+  storeNameTr.id = noSpaceName.toLowerCase();
   tableB.appendChild(storeNameTr);
   for (var d = 0; d < hours.length; d++) {
     var tdElm = document.createElement('td');
@@ -73,7 +76,13 @@ formEl.addEventListener('submit', function(event) {
   var nameStore = event.target.storeN.value;
   var miniC = parseInt(event.target.minC.value);
   var maxiC = parseInt(event.target.maxC.value);
-  var avgCookie = parseFloat(event.target.avgCook.value);
-  var storeNew = new Store(nameStore, miniC, maxiC, avgCookie);
-  storeNew.render();
+  var avgCook = parseFloat(event.target.avgCook.value);
+  // if (nameStore = storeNameTr.id) {
+  //   miniC = this.minCust;
+  //   maxiC = this.maxCust;
+  //   avgCook = this.avgCookie;
+  // } else {
+    var storeNew = new Store(nameStore, miniC, maxiC, avgCook);
+    storeNew.render();
+  // }
 });
