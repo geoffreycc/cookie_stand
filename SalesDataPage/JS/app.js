@@ -71,18 +71,7 @@ bellSquare.render();
 alki.render();
 
 var formEl = document.getElementById('newStoreInfo');
-//
-// formEl.addEventListener('submit', function(event) {
-//   event.preventDefault();
-//   var nameStore = event.target.storeN.value;
-//   var miniC = parseInt(event.target.minC.value);
-//   var maxiC = parseInt(event.target.maxC.value);
-//   var avgCook = parseFloat(event.target.avgCook.value);
-//   var storeNew = new Store(nameStore, miniC, maxiC, avgCook);
-//   storeNew.render();
-//   // }
-// });
-//
+
 formEl.addEventListener('submit', function(event) {
   event.preventDefault();
   var nameStore = event.target.storeN.value;
@@ -95,7 +84,6 @@ formEl.addEventListener('submit', function(event) {
   var storeNew = new Store(nameStore, miniC, maxiC, avgCook);
   if (document.getElementById(noSpaceName) === null) {
     console.log('Okay!');
-    // var storeNew = new Store(nameStore, miniC, maxiC, avgCook);
     storeNew.render();
   } else {
     var updateStore = new Store(nameStore, miniC, maxiC, avgCook);
@@ -104,7 +92,6 @@ formEl.addEventListener('submit', function(event) {
     console.log(updateStore);
   }
 });
-
 
 function update(obj) {
   var space = / /g;
@@ -121,5 +108,4 @@ function update(obj) {
     parentRowChildren[h].textContent = obj.hourlySales[h];
   }
   parentRow.lastChild.textContent = obj.dailyTotal;
-  // obj.render();
 }
