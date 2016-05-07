@@ -13,11 +13,9 @@ Store.prototype.getSalesNums = function(minNum, maxNum){
   return(Math.random() * (maxNum - minNum)) + minNum;
 };
 Store.prototype.totals = function(rand, maxN, minN, avgC, hour, hourlyS, dayTotal) {
-  // var hourlySale = [];
   for(var s = 0; s < hour.length; s++) {
-    this.hourlySales[s] = Math.floor(rand(minN, maxN) * avgC); //hourlySales[s]
-    this.dailyTotal += this.hourlySales[s]; //this.dailyTotal
-    // this.hourlySales = hourlySale;  //this.hourlySales
+    this.hourlySales[s] = Math.floor(rand(minN, maxN) * avgC);
+    this.dailyTotal += this.hourlySales[s];
   }
 };
 Store.prototype.render = function() {
@@ -41,7 +39,7 @@ function hoursTop(hours) {
   topR.appendChild(totalTopTh);
 }
 
-function storeTitle(nameS, data, dayTotal, hours) {
+function storeTitle(nameS, hourlyS, dayTotal, hours) {
   var storeNameTr = document.createElement('tr');
   var totalTh = document.createElement('th');
   var tableB = document.getElementById('storeInfo');
@@ -53,7 +51,7 @@ function storeTitle(nameS, data, dayTotal, hours) {
     var noSpace = nameS.replace(space, '');
     var noSpaceName = noSpace.toLowerCase();
     storeNameTr.id = noSpaceName;
-    tdElm.textContent = data[d];
+    tdElm.textContent = hourlyS[d];
     storeNameTr.appendChild(tdElm);
   }
   totalTh.textContent = dayTotal;
@@ -82,31 +80,22 @@ formEl.addEventListener('submit', function(event) {
   var miniC = parseInt(event.target.minC.value);
   var maxiC = parseInt(event.target.maxC.value);
   var avgCook = parseFloat(event.target.avgCook.value);
-  // var space = / /g;
   var noSpace = nameStore.replace(space, '');
   var noSpaceName = noSpace.toLowerCase();
   var storeNew = new Store(nameStore, miniC, maxiC, avgCook);
   if (document.getElementById(noSpaceName) === null) {
-    // console.log('Okay!');
     storeNew.render();
   } else {
     var updateStore = new Store(nameStore, miniC, maxiC, avgCook);
-    // console.log('Already exists!');
     update(updateStore);
-    // console.log(updateStore);
   }
 });
 
 function update(obj) {
-  // var space = / /g;
   var nameStore = event.target.storeN.value;
   var noSpace = nameStore.replace(space, '');
   var noSpaceName = noSpace.toLowerCase();
   var parentRow = document.getElementById(noSpaceName);
-  // console.log(parentRow);
-  // var parentRowChildren = parentRow.children;
-  // console.log(parentRowChildren);
-  // console.log(typeof parentRowChildren);
   obj.totals(obj.getSalesNums, obj.maxCust, obj.minCust, obj.avgCookie, hoursOpen);
   for (var h = 0; h < hoursOpen.length; h++) {
     parentRow.children[h].textContent = obj.hourlySales[h];
