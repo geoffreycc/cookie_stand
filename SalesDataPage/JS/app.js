@@ -6,6 +6,7 @@ function Store(storeName, minCust, maxCust, avgCookie){
   this.minCust = minCust;
   this.maxCust = maxCust;
   this.avgCookie = avgCookie;
+  storeArr.push(this);
 }
 Store.prototype.hourlySales = [];
 Store.prototype.dailyTotal = 0;
@@ -20,7 +21,6 @@ Store.prototype.totals = function(rand, maxN, minN, avgC, hour, hourlyS, dayTota
 };
 Store.prototype.render = function() {
   this.totals(this.getSalesNums, this.maxCust, this.minCust, this.avgCookie, hoursOpen, this.hourlySales, this.dailyTotal);
-  storeArr.push(this);
   storeTitle(this.storeName, this.hourlySales, this.dailyTotal, hoursOpen);
 };
 
@@ -56,18 +56,15 @@ var TopRowRender = (function () {
   }
   totalTopTh.textContent = 'Total';
   topR.appendChild(totalTopTh);
+  var pikePlace = new Store('Pike Place', 17, 88, 5.2);  //moved into iffy
+  var seaTac = new Store('SeaTac Airport', 6, 24, 1.2);
+  var southCenter = new Store('Southcenter', 11, 38, 1.9);
+  var bellSquare = new Store('Bellevue Square', 20, 48, 3.3);
+  var alki = new Store('Alki', 3, 24, 2.6);
+  for (store in storeArr) {
+    storeArr[store].render();
+  }
 }());
-
-var pikePlace = new Store('Pike Place', 17, 88, 5.2);
-var seaTac = new Store('SeaTac Airport', 6, 24, 1.2);
-var southCenter = new Store('Southcenter', 11, 38, 1.9);
-var bellSquare = new Store('Bellevue Square', 20, 48, 3.3);
-var alki = new Store('Alki', 3, 24, 2.6);
-pikePlace.render();
-seaTac.render();
-southCenter.render();
-bellSquare.render();
-alki.render();
 
 var space = / /g;
 function update(obj) {
