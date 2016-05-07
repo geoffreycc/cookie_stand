@@ -1,0 +1,54 @@
+hgroup {
+  font-family: 'Poiret One', cursive;
+  font-style: italic;
+  background-color: #CBCED3;
+  color: #2B4462;
+  font-size: 30px;
+  text-align: center;
+  height: 60%;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  color: #2B4462;
+  text-shadow: 0px 3px 0px #4170A8;
+  font-size: 200%;
+}
+
+section {
+  color: #2B4462;
+  height: 90%;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+#navigationBar{
+  background-color: #CBCED3;
+  text-align: center;
+  height: 10%;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#navigationBar li {
+  width: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  display:inline-block;
+}
+
+#article {
+  width:90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#article section {
+  width: 30%;
+  text-align: center;
+  display: inline-block;
+}
