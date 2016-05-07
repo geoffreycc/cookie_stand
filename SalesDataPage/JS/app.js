@@ -120,6 +120,6 @@ function update(obj) {
   for (var h = 0; h < hoursOpen.length; h++) {
     parentRowChildren[h].textContent = obj.hourlySales[h];
   }
-  parentRowChildren[9].textContent = obj.dailyTotal;
+  parentRow.lastChild.textContent = obj.dailyTotal;
   // obj.render();
 }
