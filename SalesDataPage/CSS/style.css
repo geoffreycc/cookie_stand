@@ -1,13 +1,20 @@
+body {
+  max-width: 960px;
+  background-color: #CBCED3;
+  margin: 0 auto;
+}
 table{
   margin-top: 60px;
   border: 2px black solid;
   border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
 }
 tr{
   border: 2px black solid;
 }
 th{
-  /*border: 2px black solid;*/
   padding-left: 15px;
   padding-right: 15px;
 }
@@ -21,6 +28,9 @@ form{
   border: 10px grey solid;
   font-weight: bold;
   margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
 }
 legend{
   font-size: 20px;
